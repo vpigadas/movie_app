@@ -7,4 +7,6 @@
     <color name="windowBackground">#081c24</color>
 
     <color name="colorStar">#FFD600</color>
+    <color name="colorGrey">#CCE6E6E6</color>
+    <color name="colorOpacityGrey">#66E6E6E6</color>
 </resources>

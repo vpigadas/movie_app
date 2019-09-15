@@ -7,7 +7,7 @@ import com.github.kittinunf.fuel.httpGet
 import com.vpigadas.movieapplication.R
 import com.vpigadas.movieapplication.models.*
 
-class ApiClient() {
+class ApiClient {
     private val apiKey: String = "394982741155b4eed8aeed3d9782bc2a"
 
     init {
@@ -31,8 +31,11 @@ class ApiClient() {
         "/movie/upcoming".httpGet().responseObject<MovieApiResponse> { request, response, result ->
             result.fold(success = { apiResponse ->
 
-                stored.coming =
-                    LocalCollectionMovies(R.string.collection_upcoming, apiResponse.results.map { LocalMovie(it) })
+                val list = mutableListOf<LocalModel>()
+                list.addAll(apiResponse.results.map { LocalMovie(it) })
+                list.add(LocalMore())
+
+                stored.coming = LocalCollectionMovies(R.string.collection_upcoming, list.toList())
                 success.postValue(stored)
 
                 getPopularMovies(stored, success, failed)
@@ -48,8 +51,12 @@ class ApiClient() {
     ) {
         "/movie/popular".httpGet().responseObject<MovieApiResponse> { request, response, result ->
             result.fold(success = { apiResponse ->
-                stored.popular =
-                    LocalCollectionMovies(R.string.collection_popular, apiResponse.results.map { LocalMovie(it) })
+
+                val list = mutableListOf<LocalModel>()
+                list.addAll(apiResponse.results.map { LocalMovie(it) })
+                list.add(LocalMore())
+
+                stored.popular = LocalCollectionMovies(R.string.collection_popular, list.toList())
                 success.postValue(stored)
 
                 getNowPlayingMovies(stored, success, failed)
@@ -65,8 +72,12 @@ class ApiClient() {
     ) {
         "/movie/now_playing".httpGet().responseObject<MovieApiResponse> { request, response, result ->
             result.fold(success = { apiResponse ->
-                stored.playNow =
-                    LocalCollectionMovies(R.string.collection_now_playing, apiResponse.results.map { LocalMovie(it) })
+
+                val list = mutableListOf<LocalModel>()
+                list.addAll(apiResponse.results.map { LocalMovie(it) })
+                list.add(LocalMore())
+
+                stored.playNow = LocalCollectionMovies(R.string.collection_now_playing, list.toList())
                 success.postValue(stored)
 
                 getTopRatedMovies(stored, success, failed)
@@ -82,8 +93,12 @@ class ApiClient() {
     ) {
         "/movie/top_rated".httpGet().responseObject<MovieApiResponse> { request, response, result ->
             result.fold(success = { apiResponse ->
-                stored.latest =
-                    LocalCollectionMovies(R.string.collection_top_rated, apiResponse.results.map { LocalMovie(it) })
+
+                val list = mutableListOf<LocalModel>()
+                list.addAll(apiResponse.results.map { LocalMovie(it) })
+                list.add(LocalMore())
+
+                stored.latest = LocalCollectionMovies(R.string.collection_top_rated, list.toList())
                 success.postValue(stored)
             }
                 , failure = { failed.postValue(it) })

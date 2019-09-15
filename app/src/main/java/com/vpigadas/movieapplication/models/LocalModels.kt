@@ -17,7 +17,7 @@ data class LocalCollections(
 
 data class LocalCollectionMovies(
     val title: Int,
-    val movies: List<LocalMovie>
+    val movies: List<LocalModel>
 ) : LocalModel {
     override fun equalContent(other: LocalModel?): Boolean {
         when (other) {
@@ -55,4 +55,8 @@ data class LocalMovie(
         }
         return false
     }
+}
+
+data class LocalMore(val name: String = "More") : LocalModel {
+    override fun equalContent(other: LocalModel?): Boolean = true
 }
