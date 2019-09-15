@@ -1,5 +1,7 @@
 package com.vpigadas.movieapplication.home
 
+import android.view.Menu
+import android.view.MenuItem
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.vpigadas.movieapplication.R
@@ -40,6 +42,7 @@ class MainActivity : AbstractActivity() {
         viewModel.getStreamData().observe(this, Observer {
             (recycler.adapter as? CollectionAdapter)?.submitList(it.getCollection())
         })
+        viewModel.refreshFavoriteList()
     }
 
     override fun destroyLayout() {

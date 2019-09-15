@@ -44,6 +44,10 @@ data class MovieDetailsResponse(
 ) {
     fun getPosterImage(): String = "https://image.tmdb.org/t/p/w500/$poster_path"
     fun getBackDropImage(): String = "https://image.tmdb.org/t/p/w500/$backdrop_path"
+
+    fun convertToLocalMovie():LocalMovie{
+        return LocalMovie(this)
+    }
 }
 
 data class GenresResponse(

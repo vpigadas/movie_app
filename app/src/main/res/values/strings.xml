@@ -4,6 +4,7 @@
 
     <string name="collection_upcoming">Upcoming Movies</string>
     <string name="collection_popular">Popular Movies</string>
+    <string name="collection_favorite">Favorite Movies</string>
     <string name="collection_top_rated">Top Rated Movies</string>
     <string name="collection_now_playing">Now Playing</string>
 
@@ -15,4 +16,8 @@
     <string name="movie_revenue">Revenue</string>
 
     <string name="more">More</string>
+    <string name="menu_favorite">Favorite</string>
+
+    <string name="favorite_added">Movie added at Favorite list</string>
+    <string name="favorite_deleted">Movie deleted at Favorite list</string>
 </resources>

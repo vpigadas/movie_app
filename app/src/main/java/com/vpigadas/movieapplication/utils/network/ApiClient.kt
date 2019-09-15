@@ -19,8 +19,15 @@ class ApiClient {
         }
     }
 
-    fun getMovies(success: MutableLiveData<LocalCollections>, failed: MutableLiveData<Exception>) {
-        getUpComingMovies(LocalCollections(), success, failed)
+    fun getMovies(
+        favorites: List<LocalMovie>,
+        success: MutableLiveData<LocalCollections>,
+        failed: MutableLiveData<Exception>
+    ) {
+        val collection = LocalCollections()
+        collection.favorite = LocalCollectionMovies(R.string.collection_favorite, favorites)
+
+        getUpComingMovies(collection, success, failed)
     }
 
     fun getUpComingMovies(
